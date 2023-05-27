@@ -1,0 +1,100 @@
+body{
+    background-image: url(/images/Design\ sem\ nome\ \(6\).png);
+    background-size: cover;
+}
+*{
+    font-family: 'Roboto', sans-serif;
+}
+img{
+    width: 300px;
+    margin-left: -20px;
+}
+#container{
+    display: flex;
+    margin-left: 30px;
+    gap: 70px;
+}
+.conversão{
+display: flex;
+gap: 100px;
+margin-left: 30px;
+}
+.conversão h1{
+
+    font-size: 18px;
+}
+.conversão input{
+
+    height: 45px;
+    width: 170px;
+    border: 1px solid #eee;
+}
+.radios{
+    margin-left: 30px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100px;
+}
+.radios h1{
+    font-size: 20px;
+}
+.converter{
+    color: aliceblue;
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(116, 128, 156);
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    margin-top: 90px;
+    margin-left: 30px;
+    border: 1px solid #ffffff10;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    box-shadow: 0px 0px 5px darkgreen;
+}
+.instrucoes {
+    max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 0 0.625rem 0.625rem;
+    background: #fff;
+    margin-left: -10px;
+    margin-top: 45px;
+    height: 42px;
+    width: 160px;
+
+}
+
+.instrucoes p{
+    font-size: 15px;
+    margin-top: 5px;
+}
+#relogio2{
+    display: none;
+}
+.conteudo{
+    display: flex;
+    gap: 30px;
+    width: 300px;
+    height: 100px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    flex-direction: row-reverse;
+
+}
+.relogio{
+    margin-top: 50px;
+    margin-left: -40px;
+
+}
+.dataSmart{
+    display: flex;
+    flex-direction: row;
+}
+
+

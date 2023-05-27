@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+        <title>Conversão de Moedas</title>
+    </head>
+<body onload="moveRelogio()">
+    <header id="container">
+        <img src="/images/stone.png" alt="">
+        <div class="relogio">
+            <main class='tela-principal'>
+                <section class='conteudo'>
+                   <div id='relogioDigital'>
+                      <span id='h'></span>:<span id='m'></span>:<span id='s'></span>
+                      </div>
+                      <div>
+                          <div id='relogio2'>
+                              <span id='hSmart'></span><span class='doisPontos'>:</span><span id='mSmart'></span><span class='doisPontos'>:</span><span id='sSmart'></span>
+                          </div>
+                          <div id='dataSmart'>
+                              <span id='semana'></span>
+                              <span id='data'></span>
+                          </div>
+                      </div>
+                  </section>
+              </main>
+            </div>
+    </header>
+    <div class="conversão">
+        <div>
+            <h1>R$</h1>
+        <input type="number"
+        name="valorEmReal"
+        id="valorEmReal"
+        class='input'
+        step='0.01'
+        min='0.00'
+        max='9999999999.99'
+        value=''
+        tabindex="1"
+        onClick='ativarBotao()'
+        onChange='ativarBotao()'
+        autofocus
+        required/>
+     </div>
+     <div>
+        <div class="instrucoes">
+            <p class='centro' id='aviso'>Digite o valor e clique converter</p>
+        </div>
+     </div>
+    </div>
+    <div class="radios">
+        <h1 class="tipo-moeda">Tipo de moeda</h1>
+            <div><input 
+                type="radio"
+                id='euro'
+                name="moedaEstrangeira"
+                class="input radio"
+                value='Euro'
+                tabindex="3"
+                >Euro</div>
+            <div><input 
+                type="radio"
+                id='dolar'
+                name="moedaEstrangeira"
+                class="input radio"
+                value='Dólar'
+                tabindex="2"
+                >Dolar</div>
+            <div><input 
+                type="radio"
+                id='bitcoins'
+                name="moedaEstrangeira"
+                class="input radio"
+                value='Bitcoins'
+                tabindex="5"
+                >Bcoin</div>
+            <div><input 
+                type="radio"
+                id='libra'
+                name="moedaEstrangeira"
+                class="input radio"
+                value='Libra'
+                tabindex="4"
+                >Libra</div>
+        </div>
+    <div class="converter" id="btnConverter">
+        <span class="material-symbols-outlined">compare_arrows</span>
+        <p>converter</p>
+    </div>
+</body>
+<script src="/index.js"></script>
+<script>
+    
+let relogio = document.querySelector('#relogio')
+let h = document.querySelector('#h')
+let m = document.querySelector('#m')
+let s = document.querySelector('#s')
+
+let hSmart = document.querySelector('#hSmart')
+let mSmart = document.querySelector('#mSmart')
+let sSmart = document.querySelector('#sSmart')
+
+let data = document.querySelector('#data')
+let semana = document.querySelector('#semana')
+
+let dataHora = new Date()
+//console.log(dataHora)
+function moveRelogio() { 
+
+    let momentoAtual = new Date()
+
+    let hora    = momentoAtual.getHours() 
+    let minuto  = momentoAtual.getMinutes() 
+    let segundo = momentoAtual.getSeconds() 
+
+    let strHora    = new String(hora)
+    let strMinuto  = new String(minuto)
+    let strSegundo = new String(segundo)
+
+    if (strSegundo.length == 1) segundo = "0" + segundo 
+    if (strMinuto.length == 1) minuto = "0" + minuto 
+    if (strHora.length == 1) hora = "0" + hora 
+
+    h.textContent = hora
+    m.textContent = minuto
+    s.textContent = segundo
+
+    hSmart.textContent = hora
+    mSmart.textContent = minuto
+    sSmart.textContent = segundo
+
+    setTimeout("moveRelogio()",1000) 
+}
+
+function pegarData() {
+
+    let diaDaSemana = dataHora.getDay()
+    let dia = dataHora.getDate()
+    let mes = dataHora.getMonth()+1
+    let ano = dataHora.getFullYear()
+
+    let strDia = new String(dia)
+    let strMes = new String(mes)
+
+    if(strDia.length == 1) mes = '0' + dia
+    if(strMes.length == 1) mes = '0' + mes
+
+    switch(diaDaSemana) {
+        case 0:
+            diaDaSemana = 'DOM'
+            break;
+        case 1:
+            diaDaSemana = 'SEG'
+            break;
+        case 2:
+            diaDaSemana = 'TER'
+            break;
+        case 3:
+            diaDaSemana = 'QUA'
+            break;
+        case 4:
+            diaDaSemana = 'QUI'
+            break;
+        case 5:
+            diaDaSemana = 'SEX'
+            break;
+        case 6:
+            diaDaSemana = 'SÁB'
+            break;
+    } 
+
+    let dataAtual = dia + '/' + mes + '/' + ano
+
+    semana.textContent = diaDaSemana
+    data.textContent = dataAtual
+
+}
+
+pegarData()
+
+var options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+    }
+
+let teste = new Date()
+
+console.log(teste.toLocaleString('pt-BR'))
+console.log(teste.toLocaleString('pt-BR', options))
+console.log(teste.toLocaleDateString('pt-BR'))
+console.log(teste.toLocaleTimeString('pt-BR'))
+
+function getUserPosition() {
+  let url = ''
+  navigator.geolocation.getCurrentPosition((pos) => {
+    let lat = pos.coords.latitude
+    let long = pos.coords.longitude
+    url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&APPID=622296cd4fda08b69c46ccfa980f968d`
+    fetchApi(url)
+    console.log(url)
+  })
+}
+
+
+getUserPosition();
+</script>
+</html>
